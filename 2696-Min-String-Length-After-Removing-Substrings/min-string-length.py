@@ -38,8 +38,52 @@ def minLength(s: str) -> int:
 
     return len(stack)
 
+# TWO-POINTER SOLUTION
+def minLength2(s: str) -> int:
+    chars = list(s)
+    index = 0
+
+    # for i in range(len(chars)):
+    #     if index > 0 and chars[i] == 'B':
+    #         if chars[i-1] == 'A':
+    #             index -= 1
+    #         else:
+    #             chars[index] = chars[i]
+    #             index += 1
+    #     elif index > 0 and chars[i] == 'D':
+    #         if chars[i-1] == 'C':
+    #             index -= 1
+    #         else:
+    #             chars[index] = chars[i]
+    #             index += 1
+    #     else:
+    #         chars[index] = chars[i]
+    #         index += 1
+
+    # MATCH/CASE STATEMENT INSTEAD
+    for i in range(len(chars)):
+        match chars[i]:
+            case 'B':
+                if index > 0 and chars[index-1] == 'A':
+                    index -= 1
+                else:
+                    chars[index] = chars[i]
+                    index += 1
+            case 'D':
+                if index > 0 and chars[index-1] == 'C':
+                    index -= 1
+                else:
+                    chars[index] = chars[i]
+                    index += 1
+            case _:
+                chars[index] = chars[i]
+                index += 1
+
+    return index
+
+
 minSeq1 = 'ABBCDACBABCDE' # Answer expected is 5
 minSeq2 = 'ABBBABBAB' # Answer expected is 3
 
-print('Answer #1: ', minLength(minSeq1))
-print('Answer #2: ', minLength(minSeq2))
+print('Answer #1: ', minLength2(minSeq1))
+print('Answer #2: ', minLength2(minSeq2))
