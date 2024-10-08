@@ -7,7 +7,7 @@
 
 #---------------------------------------------------------------------------------------------------------------------------
 
-def moveZeroes(nums):
+def moveZeroesPY(nums):
     insertIndex = 0
     
     for i in range(len(nums)):
@@ -27,8 +27,8 @@ def moveZeroes(nums):
         print(" ")
 
 
-moveZeroesPY = [0, 1, 0, 3, 12]
+numsArr = [0, 1, 0, 3, 12]
 
-moveZeroes(moveZeroesPY)
+moveZeroesPY(numsArr)
 
-print("Solution:", moveZeroesPY)
+print("Solution:", numsArr)

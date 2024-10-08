@@ -14,7 +14,7 @@
 
 // Example: Input [0, 1, 0, 3, 12] becomes [1, 3, 12, 0, 0]
 
-function moveZeroes(nums: number[]): void {
+function moveZeroesTS(nums: number[]): void {
     let insertIndex = 0; // Tracks the position of where the next non-zero element gets placed
 
     for (let i = 0; i < nums.length; i++) {
@@ -35,8 +35,8 @@ function moveZeroes(nums: number[]): void {
     }
 }
 
-const moveZeroesTS = [0, 1, 0, 3, 12];
+const numsArr = [0, 1, 0, 3, 12];
 
-moveZeroes(moveZeroesTS);
+moveZeroesTS(numsArr);
 
-console.log("solution", moveZeroesTS);
+console.log("solution", numsArr);

@@ -7,8 +7,9 @@ function canVisitAllRoomsDFS(rooms: number[][]): boolean {
     function traverse(room: number): void {
         visited[room] = true;
         for (const key of rooms[room]) {
+            console.log(key);
             if (!visited[key]) {
-                return traverse(key);
+                traverse(key);
             }
         }
     }
@@ -40,7 +41,7 @@ function canVisitAllRoomsBFS(rooms: number[][]): boolean {
     return visited.every((roomVisited) => roomVisited);
 }
 
-const rooms1 = [[1], [2], [3], []]; // Expect True
+const rooms1 = [[2, 3], [], [2], [1, 3]]; // Expect True
 const rooms2 = [[1, 3], [3, 0, 1], [2], [0]]; // Expect False
 
 console.log("DFS: ", canVisitAllRoomsDFS(rooms1));
