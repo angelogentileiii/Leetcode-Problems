@@ -19,6 +19,7 @@
     # Add next coordinates to the Queue to process
 
 #---------------------------------------------------------------------------------------------------------------------------
+
 from collections import deque
 
 def nearestExit(maze: list[list[str]], entrance: list[int]) -> int:

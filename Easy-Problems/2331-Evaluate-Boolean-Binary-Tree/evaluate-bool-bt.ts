@@ -30,6 +30,8 @@ function evaluateTree(root: TreeNode | null): boolean {
     }
 }
 
+//---------------------------------------------------------------------------------------------------------------------------
+
 // On each recursive call, we evaluate the value based on the cases
 // If children are present, we recursively enter those children to evaluate
 

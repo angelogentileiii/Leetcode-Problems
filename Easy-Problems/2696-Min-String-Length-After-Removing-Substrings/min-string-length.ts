@@ -3,6 +3,8 @@
 // Remove substrings of 'AB' and 'CD" from the string. Return the minimum length of the string.
 // After each removal the string is concatenated.
 
+//---------------------------------------------------------------------------------------------------------------------------
+
 // STACK SOLUTION
 function minLength(str: string): number {
     let stack: string[] = [];
@@ -27,6 +29,8 @@ function minLength(str: string): number {
 
     return stack.length;
 }
+
+//---------------------------------------------------------------------------------------------------------------------------
 
 // TWO-POINTER SOLUTION
 function minLength2(str: string): number {
