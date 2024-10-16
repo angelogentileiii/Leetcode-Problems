@@ -3,7 +3,8 @@
 # Given the head of a singly linked list, reverse the list, and return the reversed list.
 
 #---------------------------------------------------------------------------------------------------------------------------
-from Utils.LinkedLists.LinkedList import *
+
+from Utils.LinkedLists.LinkedList import ListNode, linkedListToList, listToLinkedList
 
 def reverseList(head: ListNode) -> ListNode:
     prev = None # Marker for the previos node --> Will become the tail

@@ -13,7 +13,7 @@ import {
     ListNode,
     listToLinkedList,
     linkedListToList,
-} from "../../Utils/LinkedLists/LinkedList";
+} from "../../Utils/LinkedLists/LinkedList.ts";
 
 function deleteMiddle(head: ListNode | null): ListNode | null {
     if (!head || !head.next) return null; // Returns null if the head is empty or a singular node --> Deletes the singular node so returns null
