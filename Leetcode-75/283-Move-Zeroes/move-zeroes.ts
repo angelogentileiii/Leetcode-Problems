@@ -14,6 +14,8 @@
 
 // Example: Input [0, 1, 0, 3, 12] becomes [1, 3, 12, 0, 0]
 
+//---------------------------------------------------------------------------------------------------------------------------
+
 function moveZeroesTS(nums: number[]): void {
     let insertIndex = 0; // Tracks the position of where the next non-zero element gets placed
 
