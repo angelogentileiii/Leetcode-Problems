@@ -28,5 +28,33 @@ function uniqueOccurrences(arr: number[]): boolean {
     return values.length === uniqueVals.size; // If the array length and the set size are identical --> No same number of occurrences
 }
 
+// ---------------------------------------------------------------------------------------------------------------------------
+
+function uniqueOccurrences2(arr: number[]): boolean {
+    let occurs: { [key: number]: number } = {};
+    let seen: Set<number> = new Set<number>();
+
+    for (let num of arr) {
+        occurs[num] = (occurs[num] || 0) + 1;
+    }
+
+    const values = Object.values(occurs);
+
+    for (let value of values) {
+        if (seen.has(value)) {
+            return false;
+        }
+        console.log(seen);
+        seen.add(value);
+    }
+
+    return true;
+}
+
+// ---------------------------------------------------------------------------------------------------------------------------
+
 console.log(uniqueOccurrences([1, 2, 2, 1, 1, 3]));
 console.log(uniqueOccurrences([-3, 2, 2, -3, 1, 3, 4, 1, 2]));
+
+console.log(uniqueOccurrences2([1, 2, 2, 1, 1, 3]));
+console.log(uniqueOccurrences2([-3, 2, 2, -3, 1, 3, 4, 1, 2]));
