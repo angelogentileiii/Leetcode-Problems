@@ -21,6 +21,45 @@
 
 #---------------------------------------------------------------------------------------------------------------------------
 
+# What are our possible combinations?
+
+#   full[n] = full[n-1] + full[n-2] + topMissing[n-1] + bottomMissing[n-1]
+
+#       We can add a vertical domino at n-1, two horizontal dominoes at n-2 OR we need to add an L shape with either the top or bottom missing previously
+
+#   topMissing[n] = bottoMissing[n-1] + full[n-2] --> n-2 because we need two empty spaces to add the tromino
+#   bottomMissing[n] = topMissing[n-1] + full[n-2] --> Same as topMissing, must satisfy condition when full
+
+def numTilings(n: int) -> int:
+    MOD = 10 ** 9 + 7
+
+    # Set our base cases for combinations --> We know at board 0 and board 1 the combinations
+
+    full, topMiss, bottomMiss = {0:1, 1:1}, {0:1, 1:0}, {0:1, 1:0}
+
+    for i in range(2, n+1): # We have the first two indexes completed --> Run till we include n
+        full[i] = full[i-1] + full[i-2] + topMiss[i-1] + bottomMiss[i-1] # All possible combinations to complete the board
+        topMiss[i] = bottomMiss[i-1] + full[i-2] # Ways to build a board where the top is missing within the contraint
+        bottomMiss[i] = topMiss[i-1] + full[i-2] # Ways to build a board where the bottom is missing within the constraint
+
+    return full[n] % MOD
+
+# Can reduce space complexity by only keeping track of the four positions at any given time --> Rather than total combinations at each index
+#   This solution becomes O(1) space complexity because only 4 variables are stored and updated at any time
+
+def numTilingsRework(n: int) -> int:
+    MOD = 10 ** 9 +7
+
+    # Four variables for position to track --> Previous Full is n-2 and full is n-1
+    previousFull, full, topMiss, bottomMiss = 1, 1, 0, 0
+
+    for _ in range(2, n+1):
+        previousFull, full, topMiss, bottomMiss = full, full + previousFull + topMiss + bottomMiss, bottomMiss + previousFull, topMiss + previousFull
+
+    return full % MOD
+
+#---------------------------------------------------------------------------------------------------------------------------
+
 #RECURSIVE APPROACH
 
 from functools import lru_cache
@@ -100,9 +139,15 @@ def numTilingsIter(n: int) -> int:
 
 #---------------------------------------------------------------------------------------------------------------------------
 
+print(numTilings(4))
+print(numTilingsRework(5))
+
+print(" ")
+
 print(numTilingsRecur(4))
 print(numTilingsRecur(5))
 
-print(numTilingsIter(3))
+print(" ")
+
 print(numTilingsIter(4))
 print(numTilingsIter(5))

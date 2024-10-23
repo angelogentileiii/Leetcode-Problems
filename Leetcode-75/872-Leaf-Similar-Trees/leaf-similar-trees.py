@@ -42,10 +42,45 @@ def leafSimilar(root1: TreeNode | None, root2: TreeNode | None) -> bool:
     # Compare the two stacks and return the boolean if they are identical
     return stack1 == stack2
 
-#---------------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------------
+
+# This function removes the space complexity of storing all of the leaves in two separate stacks as above
+#   Could become problematic with a large number of leaf nodes needing to be stored
+# Here we compare each leaf node found as it occurs in the tree --> Avoiding any storage of values
+
+def leafSimilarSpace(root1: TreeNode | None, root2: TreeNode | None) -> bool:
+    # DFS to retrieve the leaf nodes of the tree
+    def getLeaf(stack: list[int]) -> int | None:
+            while stack:
+                node = stack.pop()
+
+                if node:
+                    if not node.left and not node.right:
+                        return node.val # Return the leaf node value
+
+                    stack.append(node.left)
+                    stack.append(node.right)
+                
+            return None
+
+    stack1 = [root1]
+    stack2 = [root2]
+
+    # Goes through the leaf nodes and compares their values as returned --> If unequal, we can return false early
+    while stack1 or stack2:
+        leaf1 = getLeaf(stack1)
+        leaf2 = getLeaf(stack2)
+
+        if leaf1 != leaf2:
+            return False
+
+    return True # If we find and check all leaf nodes --> We have concluded that they match and return True
+
+    
+# ---------------------------------------------------------------------------------------------------------------------------
 
 tree1_vals = [10, 4, 6, 15, 34, 40]
-tree2_vals = [10, 23, 42, 15, 34, 42]
+tree2_vals = [10, 23, 42, 15, 34, 43]
 
 tree1 = Tree()
 for val in tree1_vals:
@@ -55,8 +90,9 @@ tree2 = Tree()
 for val in tree2_vals:
     tree2.add(val)
 
-
 print(tree1)
 print(tree2)
 
 print(leafSimilar(tree1.root, tree2.root))
+
+print(leafSimilarSpace(tree1.root, tree2.root))

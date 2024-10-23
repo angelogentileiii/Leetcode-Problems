@@ -12,6 +12,43 @@
 
 // ---------------------------------------------------------------------------------------------------------------------------
 
+function numTilings(n: number): number {
+    const MOD = 10 ** 9 + 7;
+
+    let full: { [key: number]: number } = { 0: 1, 1: 1 };
+    let topMiss: { [key: number]: number } = { 0: 1, 1: 0 };
+    let bottMiss: { [key: number]: number } = { 0: 1, 1: 0 };
+
+    for (let i = 2; i <= n; i++) {
+        full[i] = full[i - 1] + full[i - 2] + topMiss[i - 1] + bottMiss[i - 1];
+        topMiss[i] = bottMiss[i - 1] + full[i - 2];
+        bottMiss[i] = topMiss[i - 1] + full[i - 2];
+    }
+
+    return full[n] % MOD;
+}
+
+function numTilingsRework(n: number): number {
+    const MOD = 10 ** 9 + 7;
+
+    let [prevFull, full, topMiss, bottMiss] = [1, 1, 0, 0];
+
+    for (let i = 2; i <= n; i++) {
+        [prevFull, full, topMiss, bottMiss] = [
+            full % MOD,
+            (full + prevFull + topMiss + bottMiss) % MOD,
+            (bottMiss + prevFull) % MOD,
+            (topMiss + prevFull) % MOD,
+        ];
+        // The modulo operation is applied after each calculation within the loop, ensuring that no intermediate result grows too large
+        //      --> Necessary for Leetcode to pass tests of n >= 50
+    }
+
+    return full % MOD;
+}
+
+// ---------------------------------------------------------------------------------------------------------------------------
+
 function numTilingsRecur(n: number): number {
     const memo: { [key: string]: number } = {}; // Create an object for memoization
 
@@ -91,14 +128,17 @@ function numTilingsSpace(n: number): number {
     return currentWays; // Return the current value of combinations
 }
 
-console.log("Recur: ", numTilingsRecur(3));
+console.log(numTilings(4));
+console.log(numTilings(5));
+
+console.log("Rework: ", numTilingsRework(4));
+console.log("Rework: ", numTilingsRework(5));
+
 console.log("Recur: ", numTilingsRecur(4));
 console.log("Recur: ", numTilingsRecur(5));
 
-console.log("Iter: ", numTilingsIter(3));
 console.log("Iter: ", numTilingsIter(4));
 console.log("Iter: ", numTilingsIter(5));
 
-console.log("Space: ", numTilingsSpace(3));
 console.log("Space: ", numTilingsSpace(4));
 console.log("Space: ", numTilingsSpace(5));
