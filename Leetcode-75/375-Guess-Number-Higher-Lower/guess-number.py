@@ -17,7 +17,7 @@
 
 import random
 
-# Helper function for GUESS API
+# HELPER FUNCTION for GUESS API
 def guess(picked: int, num: int) -> int:
     if num > picked: return -1
     if num < picked: return 1
