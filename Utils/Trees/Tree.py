@@ -5,7 +5,8 @@ class TreeNode:
         self.right = right
 
     def __str__(self) -> str:
-        return f'{self.val}'
+        return f"{self.val}"
+
 
 class Tree:
     def __init__(self):
@@ -21,7 +22,7 @@ class Tree:
     def _level_order(self, node, values):
         if not node:
             return
-        
+
         queue = [node]
 
         while queue:
@@ -34,8 +35,10 @@ class Tree:
             if curr.right:
                 queue.append(curr.right)
 
-
     def add(self, value):
+        if value is None:
+            return
+
         if not self.root:
             self.root = TreeNode(value)
             return
@@ -48,12 +51,10 @@ class Tree:
             if not current.left:
                 current.left = TreeNode(value)
                 return
-            
+
             if not current.right:
                 current.right = TreeNode(value)
                 return
-            
+
             queue.append(current.left)
             queue.append(current.right)
-        
-
