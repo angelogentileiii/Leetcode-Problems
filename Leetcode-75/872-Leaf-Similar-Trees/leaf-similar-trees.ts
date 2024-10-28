@@ -12,14 +12,20 @@
 
 // ---------------------------------------------------------------------------------------------------------------------------
 
-import { Tree, TreeNode } from "../../Utils/Trees/Tree";
+import { BinaryTree, OptionalTreeNode } from "../../Utils/Trees/Tree";
 
-function leafSimilar(root1: TreeNode | null, root2: TreeNode | null): boolean {
+function leafSimilar(
+    root1: OptionalTreeNode<number>,
+    root2: OptionalTreeNode<number>
+): boolean {
     // Initialize two stacks to keep track of leaf nodes
     let stack1: number[] = [];
     let stack2: number[] = [];
 
-    function dfs(node: TreeNode | null, stack: number[]): void {
+    function dfs(
+        node: OptionalTreeNode<number>,
+        stack: (number | null)[]
+    ): void {
         if (!node) return;
 
         // Only push values to the stack if they are a leaf node
@@ -45,12 +51,12 @@ function leafSimilar(root1: TreeNode | null, root2: TreeNode | null): boolean {
 const tree1_vals = [10, 4, 6, 15, 34, 40];
 const tree2_vals = [10, 23, 42, 15, 34, 40];
 
-const tree1 = new Tree();
+const tree1 = new BinaryTree<number>();
 for (let val of tree1_vals) {
     tree1.add(val);
 }
 
-const tree2 = new Tree();
+const tree2 = new BinaryTree<number>();
 for (let val of tree2_vals) {
     tree2.add(val);
 }

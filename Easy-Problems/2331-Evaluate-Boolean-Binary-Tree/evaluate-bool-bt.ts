@@ -1,15 +1,15 @@
-class TreeNode {
-    val: number;
-    left: TreeNode | null;
-    right: TreeNode | null;
-    constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
-        this.val = val === undefined ? 0 : val;
-        this.left = left === undefined ? null : left;
-        this.right = right === undefined ? null : right;
-    }
-}
+// Problem #2331 --> EVALUATE BOOLEAN BINARY TREE
 
-function evaluateTree(root: TreeNode | null): boolean {
+// You are given the root of a full binary tree with the following properties:
+
+// Leaf nodes have either the value 0 or 1, where 0 represents False and 1 represents True.
+// Non-leaf nodes have either the value 2 or 3, where 2 represents the boolean OR and 3 represents the boolean AND.
+
+// ---------------------------------------------------------------------------------------------------------------------------
+
+import { BinaryTree, TreeNode } from "../../Utils/Trees/Tree";
+
+function evaluateTree(root: TreeNode<any> | null): boolean {
     if (!root) return false; // Base case to return if there is no root to evaluate
 
     switch (
@@ -42,3 +42,14 @@ function evaluateTree(root: TreeNode | null): boolean {
 // SPACE COMPLEXITY
 //     O(h) Space --> Where 'h' is the height of the tree
 //         Worst case it could be equal to the number of nodes if the tree is lopsided
+
+const tree1Vals = [2, 1, 3, null, null, 0, 1];
+
+const tree1 = new BinaryTree();
+
+for (let val of tree1Vals) {
+    tree1.add(val);
+}
+
+console.log(tree1.toString());
+console.log(evaluateTree(tree1.root));

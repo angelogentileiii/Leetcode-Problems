@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -5,56 +8,58 @@ class TreeNode:
         self.right = right
 
     def __str__(self) -> str:
-        return f"{self.val}"
+        return f"{'Value: ', self.val, 'Right Child: ', self.left.val, 'Left Child', self.right.val}"
 
 
 class Tree:
     def __init__(self):
         self.root = None
 
-    # Return the in-order traversal of the tree as a string
-    def __str__(self):
-        values = []
-        self._level_order(self.root, values)
-        return " -> ".join(map(str, values))
-
-    # In-order traversale for print statement
-    def _level_order(self, node, values):
-        if not node:
-            return
-
-        queue = [node]
-
-        while queue:
-            curr = queue.pop(0)
-            values.append(curr.val)
-
-            if curr.left:
-                queue.append(curr.left)
-
-            if curr.right:
-                queue.append(curr.right)
-
     def add(self, value):
-        if value is None:
-            return
+        new_node = TreeNode(value)
 
         if not self.root:
-            self.root = TreeNode(value)
+            self.root = new_node
             return
 
-        queue = [self.root]
-
+        queue = deque([self.root])
         while queue:
-            current = queue.pop(0)
+            current = queue.popleft()
 
             if not current.left:
-                current.left = TreeNode(value)
-                return
+                current.left = new_node
+                break
+            else:
+                queue.append(current.left)
 
             if not current.right:
-                current.right = TreeNode(value)
-                return
+                current.right = new_node
+                break
+            else:
+                queue.append(current.right)
 
-            queue.append(current.left)
-            queue.append(current.right)
+    def print_root(self):
+        if not self.root:
+            print("Tree is empty")
+            return
+
+        values = []
+        queue = deque([self.root])
+
+        while queue:
+            node = queue.popleft()
+
+            # Only store the value for non-leaf nodes, or if it's a leaf node, store it until we encounter more leaf nodes
+            if node:
+                values.append(node.val)
+                queue.append(node.left)
+                queue.append(node.right)
+            else:
+                values.append(None)
+
+        # Remove the trailing none values
+        while values and values[-1] is None:
+            values.pop()
+
+        # Print the result as an array-like format
+        print(values)
