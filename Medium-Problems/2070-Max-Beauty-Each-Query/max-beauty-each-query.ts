@@ -57,6 +57,7 @@ function maximumBeauty(items: number[][], queries: number[]): number[] {
     return result;
 }
 
+// Helper function to emulate the bisect_right function from python
 function binarySearchRight(arr: number[], target: number): number {
     let left = 0;
     let right = arr.length;
