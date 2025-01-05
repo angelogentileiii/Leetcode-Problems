@@ -10,7 +10,7 @@
 
 // ---------------------------------------------------------------------------------------------------------------------------
 
-function vowelStrings(words: string[], queries: number[][]): any {
+function vowelStrings(words: string[], queries: number[][]): number[] {
     const vowels: string[] = ["a", "e", "i", "o", "u"];
     let sum: number[] = [];
     let result: number[] = [];
