@@ -1,6 +1,6 @@
-# Welcome to [Your Project Name] 🎉
+# Welcome to LeetCode Problems/Solutions 🎉
 
-Hello and welcome to my Leetcode Problems repository! This repository is dedicated to solving Leetcode algorithmic problems with efficient and well-commented solutions for review and teaching of others. Whether you're here to explore, contribute, or provide feedback, I'm thrilled to have you visit!
+Hello and welcome to my Leetcode Problems/Solutions repository! This repository is dedicated to solving Leetcode algorithmic problems with efficient and well-commented solutions for review and teaching of others. Whether you're here to explore, contribute, or provide feedback, I'm thrilled to have you visit!
 
 ## 🤝 Collaboration and Contributions
 
