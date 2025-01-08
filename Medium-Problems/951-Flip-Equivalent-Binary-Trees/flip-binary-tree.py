@@ -6,7 +6,7 @@
 
 # ---------------------------------------------------------------------------------------------------------------------------
 
-from Utils.Trees.Tree import Tree, TreeNode
+from Utils.Python.Tree import Tree, TreeNode
 
 
 def flipEquiv(root1: TreeNode | None, root2: TreeNode | None) -> bool:

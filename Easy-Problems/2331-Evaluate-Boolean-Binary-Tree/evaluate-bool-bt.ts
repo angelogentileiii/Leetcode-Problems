@@ -7,7 +7,7 @@
 
 // ---------------------------------------------------------------------------------------------------------------------------
 
-import { BinaryTree, TreeNode } from "../../Utils/Trees/Tree";
+import { BinaryTree, TreeNode } from "../../Utils/TypeScript/Tree";
 
 function evaluateTree(root: TreeNode<any> | null): boolean {
     if (!root) return false; // Base case to return if there is no root to evaluate

@@ -10,9 +10,10 @@
 #     So that is Recursion and a helper function
 # Need a way to track each trees nodes and compare the arrays --> Maybe simultaneously
 
-#---------------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------------
 
-from Utils.Trees.Tree import TreeNode, Tree
+from Utils.Python.Tree import TreeNode, Tree
+
 
 def leafSimilar(root1: TreeNode | None, root2: TreeNode | None) -> bool:
     # Initialize two empty stacks --> Which we will push our leaf nodes into
@@ -24,17 +25,17 @@ def leafSimilar(root1: TreeNode | None, root2: TreeNode | None) -> bool:
         # If we hit a null node (the end) --> We return
         if not node:
             return
-        
+
         # If the node is a leaf node (no left or right children) --> We append to our relative stack
         if not node.left and not node.right:
-            print('Leaf Node: ', node)
+            print("Leaf Node: ", node)
             stack.append(node.val)
             return
-        
+
         # Call the recursive function on each child of the node --> Moves us deeper into the tree
         dfs(node.left, stack)
         dfs(node.right, stack)
-    
+
     # Begin the recursive call on each root and the respective stack
     dfs(root1, stack1)
     dfs(root2, stack2)
@@ -42,26 +43,28 @@ def leafSimilar(root1: TreeNode | None, root2: TreeNode | None) -> bool:
     # Compare the two stacks and return the boolean if they are identical
     return stack1 == stack2
 
+
 # ---------------------------------------------------------------------------------------------------------------------------
 
 # This function removes the space complexity of storing all of the leaves in two separate stacks as above
 #   Could become problematic with a large number of leaf nodes needing to be stored
 # Here we compare each leaf node found as it occurs in the tree --> Avoiding any storage of values
 
+
 def leafSimilarSpace(root1: TreeNode | None, root2: TreeNode | None) -> bool:
     # DFS to retrieve the leaf nodes of the tree
     def getLeaf(stack: list[int]) -> int | None:
-            while stack:
-                node = stack.pop()
+        while stack:
+            node = stack.pop()
 
-                if node:
-                    if not node.left and not node.right:
-                        return node.val # Return the leaf node value
+            if node:
+                if not node.left and not node.right:
+                    return node.val  # Return the leaf node value
 
-                    stack.append(node.left)
-                    stack.append(node.right)
-                
-            return None
+                stack.append(node.left)
+                stack.append(node.right)
+
+        return None
 
     stack1 = [root1]
     stack2 = [root2]
@@ -74,9 +77,9 @@ def leafSimilarSpace(root1: TreeNode | None, root2: TreeNode | None) -> bool:
         if leaf1 != leaf2:
             return False
 
-    return True # If we find and check all leaf nodes --> We have concluded that they match and return True
+    return True  # If we find and check all leaf nodes --> We have concluded that they match and return True
 
-    
+
 # ---------------------------------------------------------------------------------------------------------------------------
 
 tree1_vals = [10, 4, 6, 15, 34, 40]
