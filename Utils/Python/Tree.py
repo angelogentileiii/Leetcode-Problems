@@ -8,10 +8,12 @@ class TreeNode:
         self.right = right
 
     def __str__(self) -> str:
+        left_val = self.left.val if self.left else "None"
+        right_val = self.right.val if self.right else "None"
         return f"{'Value: ', self.val, 'Right Child: ', self.left.val, 'Left Child', self.right.val}"
 
 
-class Tree:
+class BinaryTree:
     def __init__(self):
         self.root = None
 
@@ -38,7 +40,7 @@ class Tree:
             else:
                 queue.append(current.right)
 
-    def print_root(self):
+    def print_level_order(self):
         if not self.root:
             print("Tree is empty")
             return

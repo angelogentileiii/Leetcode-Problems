@@ -1,4 +1,8 @@
-// Problem #206 - REVERSE A LINKED LIST
+// Problem 206 - REVERSE A LINKED LIST
+
+// Given the head of a singly linked list, reverse the list, and return the reversed list.
+
+// ---------------------------------------------------------------------------------------------------------------------------
 
 import {
     ListNode,
@@ -9,14 +13,14 @@ import {
 function reverseList(head: ListNode | null): ListNode | null {
     if (!head) return null; // Base case --> If not given a valid head, return null
 
-    let prevNode: ListNode | null = null; // Marker for the previos node --> Will become the tail
-    let currNode: ListNode | null = head; // Marker for the current node --> Tracks position within list
+    let prevNode: ListNode | null = null; // variable for the previous node --> Will become the tail
+    let currNode: ListNode | null = head; // variable for the current node --> Tracks position within list
 
     while (currNode) {
-        let nextNode = currNode.next; // Marker for the next node in the list --> In the original order
+        let nextNode = currNode.next; // variable for the next node in the list --> In the original order
         currNode.next = prevNode; // Change the next pointer to point to the previous node --> The REVERSAL is here
-        prevNode = currNode; // Update marker to current node for next iteration
-        currNode = nextNode; // Update marker to the next node for next iteration
+        prevNode = currNode; // Update variable to current node for next iteration
+        currNode = nextNode; // Update variable to the next node for next iteration
     }
 
     return prevNode; // Return the previous node --> After the last iteration, the previous node represents the final current node AKA the new HEAD

@@ -8,18 +8,25 @@ from Utils.Python.LinkedList import ListNode, linkedListToList, listToLinkedList
 
 
 def reverseList(head: ListNode) -> ListNode:
-    prev = None  # Marker for the previos node --> Will become the tail
-    currNode = (
-        head  # Marker for our current position in our list --> Begins at the head
-    )
+    # Variable for the previous node --> Will become the tail
+    prev = None
 
-    while currNode:  # While we have a currentNode to work with
-        nextNode = currNode.next  # Marker for the next node in the list originally
-        currNode.next = (
-            prev  # Make the pointer to the next node point to the previous node
-        )
-        prev = currNode  # Make the previous node pointer point to the current node --> Updated for next loop iteration
-        currNode = nextNode  # Updated the current node pointer to the next node --> For the next iteration of the loop
+    # Variable for our current position in our list --> Begins at the head
+    currNode = head
+
+    # While loop for moving through our nodes of our list
+    while currNode:
+        # Variable for the next node in the list originally
+        nextNode = currNode.next
+
+        # Make the pointer to the next node point to the previous node
+        currNode.next = prev
+
+        # Make the previous node pointer point to the current node --> Updated for next loop iteration
+        prev = currNode
+
+        # Updated the current node pointer to the next node --> For the next iteration of the loop
+        currNode = nextNode
 
     return prev  # Return the previous node --> At the end of the loop, this becomes the new head of the linked list (updates to currNode AKA the new HEAD)
 

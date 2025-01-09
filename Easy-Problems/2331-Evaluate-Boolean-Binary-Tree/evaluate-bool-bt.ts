@@ -15,22 +15,25 @@ function evaluateTree(root: TreeNode<any> | null): boolean {
     switch (
         root.val // Switch statement based on node value
     ) {
+        // Node value 0 maps to false
         case 0:
-            return false; // Likely could remove as default would handle --> More readability
+            return false;
+        // Node value 1 maps to true
         case 1:
             return true;
+        // Node value 2 returns true is either child evaluates to true
         case 2:
-            // The 2 value returns true is either child evaluates to True
             return evaluateTree(root.left) || evaluateTree(root.right);
+        // Node value 3 returns true is both children evaluate to true
         case 3:
-            // The 3 value returns true is both children evaluate to True
             return evaluateTree(root.left) && evaluateTree(root.right);
+        // Default case: Return False for unsupported node values
         default:
             return false;
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------------
 
 // On each recursive call, we evaluate the value based on the cases
 // If children are present, we recursively enter those children to evaluate
