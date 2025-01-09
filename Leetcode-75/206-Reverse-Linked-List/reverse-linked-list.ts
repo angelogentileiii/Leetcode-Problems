@@ -4,7 +4,7 @@ import {
     ListNode,
     linkedListToList,
     listToLinkedList,
-} from "../../Utils/LinkedLists/LinkedList";
+} from "../../Utils/TypeScript/LinkedList";
 
 function reverseList(head: ListNode | null): ListNode | null {
     if (!head) return null; // Base case --> If not given a valid head, return null
