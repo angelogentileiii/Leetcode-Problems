@@ -35,19 +35,52 @@
 // ---------------------------------------------------------------------------------------------------------------------------
 
 function minimizeXor(num1: number, num2: number): number {
-    const num1Bits = num1.countBits(); // NEED FUNCTION FOR COUNTING BITS
+    // Helper function to count the number of '1' bits in a number (since there is no-built in function like Python's bit_count())
+    const bitCount = (num: number): number => {
+        let count = 0;
+        while (num > 0) {
+            count += num & 1; // Check if the least significant bit is 1 (rightmost bit)
 
-    console.log(`Num1 '1' Bits: ${num1Bits}`);
+            // Can check the console to see how the bits are shown and counted in this function
+            console.log(`Num: ${num} - Binary: ${num.toString(2)}`);
 
-    const num2Bits = num2.countBits(); // NEED FUNCTION FOR COUNTING BITS
+            num >>= 1; // Shift right by 1 to process the next bit
+        }
+        return count;
+    };
 
-    console.log(`Num2 '1' Bits: ${num2Bits}`);
+    // Count the '1' bits in num1
+    let num1Bits = bitCount(num1);
+    console.log(`Bits in Num1: ${num1Bits}`);
 
-    // Comparison logic of the '1' bits from both of our numbers
-    while (num1Bits < num2Bits) {}
+    // Count the '1' bits in num2
+    const num2Bits = bitCount(num2);
+    console.log(`Bits in Num2: ${num2Bits}`);
 
-    while (num1Bits > num2Bits) {}
+    // If num1 has more '1' bits than num2, reduce the number of '1' bits in num1
+    while (num1Bits > num2Bits) {
+        // Turn off the rightmost '1' bit in num1
+        num1 &= num1 - 1;
 
-    console.log(`Final Updated NUmber: ${num1}\n`);
+        // Decrease the bit count since we removed a '1' bit
+        num1Bits -= 1;
+        console.log(`Updated num1 Val: ${num1} - '1' Bits: ${num1Bits}`);
+    }
+
+    // If num1 has fewer '1' bits than num2, increase the number of '1' bits in num1
+    while (num1Bits < num2Bits) {
+        // Turn on the rightmost '0' bit in num1
+        num1 |= num1 + 1;
+
+        // Increase the bit count since we added a '1' bit
+        num1Bits += 1;
+        console.log(`Updated num1 Val: ${num1} - '1' Bits: ${num1Bits}`);
+    }
+
+    console.log(`Final Updated Number: ${num1}\n`);
     return num1;
 }
+
+// Example calls to demonstrate the function
+minimizeXor(8, 7); // Output: 11
+minimizeXor(127, 8); // Output: 64

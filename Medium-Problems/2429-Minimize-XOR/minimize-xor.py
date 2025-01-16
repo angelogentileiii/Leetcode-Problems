@@ -72,5 +72,5 @@ def minimizeXor(num1: int, num2: int) -> int:
 
 # View the print statements to see how we fulfill x XOR num1 --> We make the minimum amount of changes necessary to equalize our '1' bits
 
-minimizeXor(8, 7)
-minimizeXor(127, 8)
+minimizeXor(8, 7)  # Output: 11
+minimizeXor(127, 8)  # Output: 64
