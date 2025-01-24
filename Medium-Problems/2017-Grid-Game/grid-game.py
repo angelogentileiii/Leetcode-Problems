@@ -67,7 +67,7 @@ def gridGame(grid: list[list[int]]) -> int:
         points_top = top_prefix[n] - top_prefix[col + 1]
 
         # Points already collected on the bottom row up to the current column (col)
-        #   - Since we beging in cell (0, 0), we can simply take the appropriate column value from the bot_pref array
+        #   - Since we beginning in cell (0, 0), we can simply take the appropriate column value from the bot_pref array
         points_bot = bot_prefix[col]
 
         print(f"Points Top: {points_top}")

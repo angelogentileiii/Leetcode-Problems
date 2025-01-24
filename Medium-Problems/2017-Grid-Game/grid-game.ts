@@ -66,7 +66,7 @@ function gridGame(grid: number[][]): number {
         const pointsTop = topPrefix[n] - topPrefix[j + 1];
 
         // Points already collected on the bottom row up to the current column (col)
-        //   - Since we beging in cell (0, 0), we can simply take the appropriate column value from the bot_pref array
+        //   - Since we beginning in cell (0, 0), we can simply take the appropriate column value from the bot_pref array
         const pointsBot = botPrefix[j];
 
         console.log(`Points Top:`, pointsTop);
